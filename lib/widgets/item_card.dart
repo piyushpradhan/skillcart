@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skillcart/screens/detail_screen.dart';
 
 class ItemCard extends StatelessWidget {
   @override
@@ -17,30 +18,46 @@ class ItemCard extends StatelessWidget {
           )
         ],
       ),
-      child: Row(
-        children: [
-          Image(
-            width: 250,
-            image: NetworkImage("https://static.toiimg.com/photo/82907329.cms"),
-          ),
-          VerticalDivider(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Laptop",
-                style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),
-              ),
-              Divider(height: 2.0),
-              Text("Zairza"),
-              Divider(),
-              Text(
-                "\$500",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.black54),
-              ),
-            ],
-          ),
-        ],
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => DetailScreen(),
+            ),
+          );
+        },
+        child: Row(
+          children: [
+            Image(
+              width: 250,
+              image:
+                  NetworkImage("https://static.toiimg.com/photo/82907329.cms"),
+            ),
+            VerticalDivider(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Laptop",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700),
+                ),
+                Divider(height: 2.0),
+                Text("Zairza"),
+                Divider(),
+                Text(
+                  "\$500",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black54),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

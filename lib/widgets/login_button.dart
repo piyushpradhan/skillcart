@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
+  final String buttonLabel;
   final double buttonMinWidth;
   final Function onPressedFunc;
-  const LoginButton(this.buttonMinWidth, this.onPressedFunc);
+  const LoginButton(this.buttonLabel, this.buttonMinWidth, this.onPressedFunc);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class LoginButton extends StatelessWidget {
         onPressedFunc();
       },
       child: Text(
-        "Login",
+        buttonLabel,
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,

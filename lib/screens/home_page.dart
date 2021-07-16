@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skillcart/screens/home_screen.dart';
 import 'package:skillcart/screens/orders_screen.dart';
 import 'package:skillcart/screens/profile_screen.dart';
+import 'package:skillcart/widgets/cart_icon.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,13 +27,7 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
         actions: [
-          _currentTab == 0
-              ? IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.shopping_cart),
-                  color: Colors.black,
-                )
-              : Container(),
+          _currentTab == 0 ? CartIcon() : Container(),
         ],
       ),
       body: pages[_currentTab],

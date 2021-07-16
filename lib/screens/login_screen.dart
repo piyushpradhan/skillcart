@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:skillcart/screens/home_page.dart';
 import 'package:skillcart/screens/register_screen.dart';
 import 'package:skillcart/widgets/login_button.dart';
 
@@ -10,6 +12,26 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  loginUser() async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      _auth
+          .signInWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text)
+          .then((value) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => HomePage(),
+          ),
+        );
+      });
+    } on FirebaseAuthException catch (e) {
+      print("Firebase exception: ${e.message}");
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +116,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 Divider(
                   height: 30,
                 ),
-                LoginButton(330, () {}),
+                LoginButton(
+                  "Login",
+                  330,
+                  () {
+                    if (emailController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty) {
+                      loginUser();
+                    }
+                  },
+                ),
                 Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.blue),
                       ),
                       onTap: () {
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (_) => RegisterScreen(),
                           ),

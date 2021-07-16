@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "623922068416",
+    "project_id": "skillcart-e79e9",
+    "storage_bucket": "skillcart-e79e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623922068416:android:10a10e23b0cbb65fc0e625",
+        "android_client_info": {
+          "package_name": "com.example.skillcart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623922068416-pf0iuu28djmj27rispb447p8qbogf07s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYakGvKQSJZgD3q6V9fnaf3SODQRX-cus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623922068416-pf0iuu28djmj27rispb447p8qbogf07s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

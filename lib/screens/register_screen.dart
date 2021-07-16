@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:skillcart/screens/home_page.dart';
 import 'package:skillcart/widgets/login_button.dart';
+
+import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -9,6 +14,27 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  registerUser() async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      _auth
+          .createUserWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text)
+          .then((value) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => HomePage(),
+          ),
+        );
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') print("Email exists");
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,10 +116,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                 ),
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Confirm Password",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Divider(),
+                      TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 8),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1),
+                          ),
+                        ),
+                        controller: confirmPasswordController,
+                      ),
+                    ],
+                  ),
+                ),
                 Divider(
                   height: 30,
                 ),
-                LoginButton(330, () {}),
+                LoginButton("Register", 330, () {
+                  if (emailController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty &&
+                      confirmPasswordController.text.isNotEmpty) {
+                    if (passwordController.text ==
+                        confirmPasswordController.text) {
+                      registerUser();
+                    }
+                  }
+                }),
                 Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -105,9 +171,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(color: Colors.blue),
                       ),
                       onTap: () {
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (_) => RegisterScreen(),
+                            builder: (_) => LoginScreen(),
                           ),
                         );
                       },

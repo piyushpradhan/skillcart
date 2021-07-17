@@ -36,16 +36,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               ),
               user != null
-                  ? LoginButton(
-                      "Logout",
-                      300,
-                      () async {
-                        await FirebaseAuth.instance.signOut();
-                        setState(() {
-                          user = null;
-                        });
-                      },
-                    )
+                  ? LoginButton("Logout", 300, () async {
+                      await FirebaseAuth.instance.signOut();
+                      setState(() {
+                        user = null;
+                      });
+                    })
                   : Container(),
             ],
           ),

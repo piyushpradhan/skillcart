@@ -13,20 +13,22 @@ class CartIcon extends StatelessWidget {
           final cartBox = Hive.box("cart");
           return Stack(
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Text(
-                  cartBox.length.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
+              cartBox.length > 0
+                  ? Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Text(
+                        cartBox.length.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  : Container(),
               IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.shopping_cart),

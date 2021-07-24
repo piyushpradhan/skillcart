@@ -13,82 +13,92 @@ class OrdersList extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 "21 July",
-                style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black54),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ),
-            ItemCard(),
+            // ItemCard(),
           ],
         ),
       ),

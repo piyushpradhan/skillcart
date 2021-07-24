@@ -26,8 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         );
       });
-    } on FirebaseAuthException catch (e) {
-      print("Firebase exception: ${e.message}");
+    } on Exception catch (e) {
+      print("Firebase exception: ${e.toString()}");
     } catch (e) {
       print(e);
     }

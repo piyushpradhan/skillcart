@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:skillcart/screens/cart_screen.dart';
 
 class CartIcon extends StatelessWidget {
   const CartIcon({Key? key}) : super(key: key);
@@ -30,7 +31,10 @@ class CartIcon extends StatelessWidget {
                     )
                   : Container(),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => CartScreen()));
+                },
                 icon: Icon(Icons.shopping_cart),
                 color: Colors.black,
               ),

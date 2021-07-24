@@ -1,19 +1,17 @@
 import 'package:hive/hive.dart';
+import 'package:skillcart/models/products.dart';
 
 part 'item.g.dart';
 
 @HiveType(typeId: 1)
 class Item {
   @HiveField(0)
-  final String itemName;
+  final Product product;
   @HiveField(1)
-  final double price;
-  @HiveField(2)
-  final String seller;
+  int quantity;
 
-  const Item({
-    required this.itemName,
-    required this.price,
-    required this.seller,
+  Item({
+    required this.product,
+    this.quantity = 1,
   });
 }

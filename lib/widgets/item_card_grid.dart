@@ -11,7 +11,9 @@ class ItemCardGrid extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => DetailScreen(),
+            builder: (_) => DetailScreen(
+              product: product,
+            ),
           ),
         );
       },

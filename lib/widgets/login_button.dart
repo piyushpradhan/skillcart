@@ -12,6 +12,7 @@ class LoginButton extends StatelessWidget {
       minWidth: buttonMinWidth,
       color: Colors.blue,
       onPressed: () {
+        print("Hello");
         onPressedFunc();
       },
       child: Text(

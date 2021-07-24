@@ -1,1 +1,1 @@
-const String BASE_URI = "https://skillscart.zairza.in/api/";
+const String BASE_URI = "https://skillscart.zairza.in/api";

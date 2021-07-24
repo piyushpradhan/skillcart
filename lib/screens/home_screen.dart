@@ -6,6 +6,7 @@ import 'package:skillcart/models/products.dart';
 import 'package:skillcart/models/response.dart';
 import 'package:skillcart/widgets/items_grid.dart';
 import 'package:skillcart/widgets/items_list.dart';
+import 'package:skillcart/services/api.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -15,32 +16,33 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isList = true;
-  dynamic getData;
+  Api _api = new Api();
+  var getData;
 
   @override
   void initState() {
     super.initState();
-    getData = getProductFromServer;
+    // getData = _api.getProducts();
   }
 
-  Future getProductFromServer() async {
-    var url = Uri.parse('$BASE_URI/product');
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    return response;
-  }
+  // Future getProductFromServer() async {
+  //   var url = Uri.parse('$BASE_URI/product');
+  //   var response = await http.get(url);
+  //   print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  //   return response;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FutureBuilder(
-          future: getProductFromServer(),
+      child: FutureBuilder<Response>(
+          future: _api.getProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              Response response = responseFromJson(jsonEncode(snapshot.data));
+              Response response = snapshot.data!;
               List<Product> products =
-                  productFromJson(jsonEncode(response.data!));
+                  productFromJson(jsonEncode(response.data));
               return Column(
                 children: [
                   Padding(

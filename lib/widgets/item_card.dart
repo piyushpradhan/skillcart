@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:skillcart/models/products.dart';
 import 'package:skillcart/screens/detail_screen.dart';
 
 class ItemCard extends StatelessWidget {
+  ItemCard({required this.product});
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,25 +33,23 @@ class ItemCard extends StatelessWidget {
           children: [
             Image(
               width: 250,
-              image:
-                  NetworkImage("https://static.toiimg.com/photo/82907329.cms"),
+              image: NetworkImage(product.image),
             ),
             VerticalDivider(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Laptop",
+                  product.name,
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black,
                       fontWeight: FontWeight.w700),
                 ),
                 Divider(height: 2.0),
-                Text("Zairza"),
                 Divider(),
                 Text(
-                  "\$500",
+                  "\$ ${product.price}",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

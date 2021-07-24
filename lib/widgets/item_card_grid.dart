@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:skillcart/models/products.dart';
 import 'package:skillcart/screens/detail_screen.dart';
 
 class ItemCardGrid extends StatelessWidget {
+  ItemCardGrid({required this.product});
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,7 +30,7 @@ class ItemCardGrid extends StatelessWidget {
         ),
         child: Image(
           width: 300,
-          image: NetworkImage("https://static.toiimg.com/photo/82907329.cms"),
+          image: NetworkImage(product.image),
         ),
       ),
     );

@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isList = true;
-  Api _api = new Api();
   var getData;
 
   @override
@@ -37,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder<Response>(
-          future: _api.getProducts(),
+          future: Api.getProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               Response response = snapshot.data!;

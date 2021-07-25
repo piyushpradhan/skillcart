@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:skillcart/models/item.dart';
+import 'package:skillcart/models/response.dart';
+import 'package:skillcart/services/api.dart';
 import 'package:skillcart/widgets/cartItem_list.dart';
+import 'package:skillcart/widgets/flutter_toast.dart';
 
 class CartScreen extends StatefulWidget {
   CartScreen({Key? key}) : super(key: key);
@@ -72,5 +76,15 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Future<void> addItemToOrder(List<Item> items) async {}
+  Future<void> addItemToOrder(List<Item> items) async {
+    Response response = await Api.postOrder(items);
+    if (response.status) {
+      CustomToast.showToast("Ordered Successfully");
+      final cartBox = Hive.box("cart");
+      await cartBox.clear();
+      Navigator.pop(context);
+    } else {
+      CustomToast.showToast(response.error.toString());
+    }
+  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LoginButton extends StatelessWidget {
   final String buttonLabel;
   final double buttonMinWidth;
-  final Function onPressedFunc;
+  final dynamic onPressedFunc;
   const LoginButton(this.buttonLabel, this.buttonMinWidth, this.onPressedFunc);
 
   @override

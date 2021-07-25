@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:skillcart/screens/home_page.dart';
 import 'package:skillcart/screens/register_screen.dart';
+import 'package:skillcart/services/api.dart';
 import 'package:skillcart/widgets/login_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
       _auth
           .signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text)
-          .then((value) {
+          .then((value) async {
+        await Api.loginUser(value.user!);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) => HomePage(),

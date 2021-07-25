@@ -5,6 +5,7 @@ import 'package:skillcart/models/products.dart';
 import 'package:skillcart/widgets/cart_icon.dart';
 import 'package:skillcart/widgets/login_button.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:skillcart/widgets/flutter_toast.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({required this.product, Key? key}) : super(key: key);
@@ -28,14 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
         Item(product: widget.product, quantity: 1),
       );
     }
-    Fluttertoast.showToast(
-        msg: "Added To Cart",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0);
+    CustomToast.showToast("Added to cart");
     Navigator.of(context).pop();
   }
 

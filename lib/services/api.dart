@@ -1,30 +1,63 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:skillcart/constants/API_URL.dart';
 import 'package:http/http.dart' as http;
 import 'package:skillcart/models/item.dart';
 import 'package:skillcart/models/response.dart';
+import 'package:skillcart/models/responseAuth.dart';
+import 'package:skillcart/services/SharePrefs.dart';
 
 class Api {
   static const url = BASE_URI;
 
-  Future<Response> getProducts() async {
+  static Future<Response> getProducts() async {
     Uri endpoint = Uri.parse("$url/product");
     var response = await http.get(endpoint);
     print(response.body.toString());
     return responseFromJson(response.body);
   }
 
-  Future<Response> getOrders() async {
+  static Future<Response> getOrders() async {
     Uri endpoint = Uri.parse("$url/orders");
-    var response = await http.get(endpoint);
+    String token = await LocalSharedPreference.getToken();
+    var response = await http.get(
+      endpoint,
+      headers: {
+        "authorization": token,
+      },
+    );
     return responseFromJson(response.body);
   }
 
-  Future postOrder(List<Item> items) async {
+  static Future<Response> postOrder(List<Item> items) async {
     Uri endpoint = Uri.parse("$url/orders");
-    return '';
+    String token = await LocalSharedPreference.getToken();
+    Map bodyMap = {
+      "products": json.decode(itemToJson(items)),
+    };
+    String body = json.encode(bodyMap);
+    print(body);
+    var response = await http.post(
+      endpoint,
+      headers: {"authorization": token, "content-type": "application/json"},
+      body: body,
+    );
+    print(response.body.toString());
+    return responseFromJson(response.body);
   }
 
-  Future<void> loginUser() async {}
+  static Future<void> loginUser(User user) async {
+    Uri endpoint = Uri.parse("$url/user");
+    Map body = {
+      "name": user.displayName ?? 'Hello',
+      "email": user.email,
+      "firebaseUid": user.uid
+    };
+    var response =
+        await http.post(endpoint, body: jsonDecode(jsonEncode(body)));
+    ResponseAuth responseAuth = responseAuthFromJson(response.body);
+    LocalSharedPreference.setToken(responseAuth.token);
+    return;
+  }
 }

@@ -10,6 +10,22 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+
+  buttonFunction() async {
+    if (user != null) {
+      await FirebaseAuth.instance.signOut();
+      setState(() {
+        user = null;
+      });
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => LoginScreen(),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,24 +41,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ? Text("${user?.email.toString()}")
                   : Text("Not logged in"),
               LoginButton(
-                "Login",
+                user != null ? "Logout " : "Login",
                 300,
-                () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => LoginScreen(),
-                    ),
-                  );
-                },
+                buttonFunction,
               ),
-              user != null
-                  ? LoginButton("Logout", 300, () async {
-                      await FirebaseAuth.instance.signOut();
-                      setState(() {
-                        user = null;
-                      });
-                    })
-                  : Container(),
             ],
           ),
         ),

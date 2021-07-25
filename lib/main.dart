@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:skillcart/models/item.dart';
+import 'package:skillcart/models/products.dart';
 import 'package:skillcart/screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -12,6 +13,7 @@ Future<void> main() async {
   final appDocDir = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocDir.path);
   Hive.registerAdapter(ItemAdapter());
+  Hive.registerAdapter(ProductAdapter());
   runApp(MyApp());
 }
 

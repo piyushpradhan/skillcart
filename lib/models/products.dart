@@ -9,7 +9,7 @@ List<Product> productFromJson(String str) =>
 String productToJson(List<Product> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 class Product {
   Product({
     required this.id,

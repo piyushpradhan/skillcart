@@ -19,6 +19,7 @@ class _CartScreenState extends State<CartScreen> {
     //   itemList.add(element);
     // });
     // List<Item> itemList = cartBox.values.toList() as List<Item>;
+    print(item);
     return item;
   }
 
@@ -34,7 +35,27 @@ class _CartScreenState extends State<CartScreen> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!.isNotEmpty) {
-                  return CartItemList(items: snapshot.data!);
+                  return Column(
+                    children: [
+                      CartItemList(items: snapshot.data!),
+                      MaterialButton(
+                        minWidth: 300,
+                        color: Colors.blue,
+                        onPressed: () async {
+                          print("Hello");
+                          addItemToOrder(snapshot.data!);
+                        },
+                        child: Text(
+                          "Order",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
                 } else {
                   return Center(
                     child: Text("No Items in the Cart"),
@@ -50,4 +71,6 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
+
+  Future<void> addItemToOrder(List<Item> items) async {}
 }

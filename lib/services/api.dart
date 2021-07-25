@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:skillcart/constants/API_URL.dart';
 import 'package:http/http.dart' as http;
+import 'package:skillcart/models/item.dart';
 import 'package:skillcart/models/response.dart';
 
 class Api {
@@ -20,7 +21,10 @@ class Api {
     return responseFromJson(response.body);
   }
 
-  Future postOrder() async {
+  Future postOrder(List<Item> items) async {
+    Uri endpoint = Uri.parse("$url/orders");
     return '';
   }
+
+  Future<void> loginUser() async {}
 }

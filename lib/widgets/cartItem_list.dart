@@ -11,6 +11,7 @@ class CartItemList extends StatelessWidget {
       child: Expanded(
         child: ListView.builder(
           itemCount: items.length,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return CartItemCard(
               item: items[index],

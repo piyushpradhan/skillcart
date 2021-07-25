@@ -8,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({required this.product, Key? key}) : super(key: key);
-  final Product product;  q
+  final Product product;
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -17,15 +17,16 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   addItemToCart() async {
     final cartBox = Hive.box("cart");
-    Item item = await cartBox.get(widget.product.id);
-    if (item == null) {
+    print(cartBox.containsKey(widget.product.id));
+    if (cartBox.containsKey(widget.product.id)) {
+      Item item = await cartBox.get(widget.product.id);
+      item.quantity += 1;
+      await cartBox.put(widget.product.id, item);
+    } else {
       await cartBox.put(
         widget.product.id,
         Item(product: widget.product, quantity: 1),
       );
-    } else {
-      item.quantity += 1;
-      await cartBox.put(widget.product.id, item);
     }
     Fluttertoast.showToast(
         msg: "Added To Cart",

@@ -27,6 +27,7 @@ class Api {
         "authorization": token,
       },
     );
+    print("orders: " + response.body.toString());
     return responseFromJson(response.body);
   }
 
@@ -49,13 +50,8 @@ class Api {
 
   static Future<void> loginUser(User user) async {
     Uri endpoint = Uri.parse("$url/user");
-    Map body = {
-      "name": user.displayName ?? 'Hello',
-      "email": user.email,
-      "firebaseUid": user.uid
-    };
-    var response =
-        await http.post(endpoint, body: jsonDecode(jsonEncode(body)));
+    Map body = {"name": user.displayName ?? 'Hello', "email": user.email, "firebaseUid": user.uid};
+    var response = await http.post(endpoint, body: jsonDecode(jsonEncode(body)));
     ResponseAuth responseAuth = responseAuthFromJson(response.body);
     LocalSharedPreference.setToken(responseAuth.token);
     return;

@@ -2,11 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:skillcart/models/order.dart';
-import 'package:skillcart/models/products.dart';
 import 'package:skillcart/models/response.dart';
 import 'package:skillcart/services/api.dart';
 import 'package:skillcart/widgets/cartItem_list.dart';
-import 'package:skillcart/widgets/item_card.dart';
 
 class OrdersScreen extends StatefulWidget {
   @override
@@ -31,11 +29,20 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       return ListView(
                         shrinkWrap: true,
                         children: [
-                          Text(
-                            'Order Id: ${orders[index].id}',
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                            child: Text('Order Id: ${orders[index].id}',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                )),
                           ),
-                          Text(
-                            'Create At: ${orders[index].createdAt.toLocal()}',
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text('Created At: ${orders[index].createdAt.toLocal()}',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                )),
                           ),
                           CartItemList(items: orders[index].products),
                           Divider(),

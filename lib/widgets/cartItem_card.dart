@@ -8,7 +8,7 @@ class CartItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+      margin: const EdgeInsets.only(top: 4.0, left: 16, right: 16),
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -33,28 +33,19 @@ class CartItemCard extends StatelessWidget {
             children: [
               Text(
                 item.product.name,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),
               ),
               Divider(height: 2.0),
               Divider(),
               Text(
                 "Price: \$ ${item.product.price}",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black54),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.black54),
               ),
               Divider(height: 2.0),
               Divider(),
               Text(
                 "Quantity: ${item.quantity}",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black54),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.black54),
               ),
             ],
           ),

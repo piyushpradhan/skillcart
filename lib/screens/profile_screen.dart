@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:skillcart/screens/login_screen.dart';
+import 'package:skillcart/services/SharePrefs.dart';
 import 'package:skillcart/widgets/login_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   buttonFunction() async {
     if (user != null) {
       await FirebaseAuth.instance.signOut();
+      await LocalSharedPreference.clearToken();
       setState(() {
         user = null;
       });

@@ -11,4 +11,9 @@ class LocalSharedPreference {
     await SharedPreferences.getInstance()
         .then((sharedPref) => sharedPref.setString('token', token));
   }
+
+  static Future<void> clearToken() async {
+    await SharedPreferences.getInstance()
+        .then((sharedPref) => sharedPref.setString('token', ''));
+  }
 }

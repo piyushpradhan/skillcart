@@ -14,9 +14,8 @@ class OrdersScreen extends StatefulWidget {
 class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
-      child: Container(
+    return Scaffold(
+      body: Container(
         child: FutureBuilder<Response>(
             future: Api.getOrders(),
             builder: (context, snapshot) {
@@ -29,26 +28,28 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       shrinkWrap: true,
                       itemCount: orders.length,
                       itemBuilder: (context, index) {
-                        return ListView(
-                          shrinkWrap: true,
+                        return Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 4),
-                              child: Text('Order Id: ${orders[index].id}',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+                              child: Text(
+                                'Order Id: ${orders[index].id}',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
-                                  'Created At: ${orders[index].createdAt.toLocal()}',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  )),
+                                'Created At: ${orders[index].createdAt.toLocal()}',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
                             ),
                             CartItemList(items: orders[index].products),
                             Divider(),

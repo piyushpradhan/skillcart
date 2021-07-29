@@ -8,16 +8,15 @@ class CartItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Expanded(
-        child: ListView.builder(
-          itemCount: items.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return CartItemCard(
-              item: items[index],
-            );
-          },
-        ),
+      child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: items.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return CartItemCard(
+            item: items[index],
+          );
+        },
       ),
     );
   }

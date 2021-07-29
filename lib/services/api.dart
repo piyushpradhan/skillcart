@@ -21,6 +21,9 @@ class Api {
   static Future<Response> getOrders() async {
     Uri endpoint = Uri.parse("$url/orders");
     String token = await LocalSharedPreference.getToken();
+    if (token.isEmpty) {
+      return Future.error('User is not Logged In.');
+    }
     var response = await http.get(
       endpoint,
       headers: {
@@ -34,6 +37,7 @@ class Api {
   static Future<Response> postOrder(List<Item> items) async {
     Uri endpoint = Uri.parse("$url/orders");
     String token = await LocalSharedPreference.getToken();
+    if (token.isEmpty) return Future.error('User is not Logged In.');
     Map bodyMap = {
       "products": json.decode(itemToJson(items)),
     };
@@ -50,8 +54,13 @@ class Api {
 
   static Future<void> loginUser(User user) async {
     Uri endpoint = Uri.parse("$url/user");
-    Map body = {"name": user.displayName ?? 'Hello', "email": user.email, "firebaseUid": user.uid};
-    var response = await http.post(endpoint, body: jsonDecode(jsonEncode(body)));
+    Map body = {
+      "name": user.displayName ?? 'Hello',
+      "email": user.email,
+      "firebaseUid": user.uid
+    };
+    var response =
+        await http.post(endpoint, body: jsonDecode(jsonEncode(body)));
     ResponseAuth responseAuth = responseAuthFromJson(response.body);
     LocalSharedPreference.setToken(responseAuth.token);
     return;
